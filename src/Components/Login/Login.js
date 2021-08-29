@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import "./Login.css"
 import axios from "axios"
-import { useHistory } from 'react-router'
+import { useHistory } from "react-router-dom"
 
-const  Login = ({ setLoginUser}) => {
+const  Login = ({setLoginUser}) => {
 
-        const history = useHistory()
+    const history = useHistory()
 
     const [ user, setUser] = useState({
         email: "",
@@ -20,13 +20,13 @@ const  Login = ({ setLoginUser}) => {
         })
     }
 
-    const login = () => {
+    const login =() => {
         axios.post("http://localhost:8000/login", user)
         .then(res => {
-            alert(res.data.message)
+        alert(res.data.message)
         setLoginUser(res.data.user)
         history.push("/")
-    })
+        })
 }
 
     return (
@@ -37,9 +37,9 @@ const  Login = ({ setLoginUser}) => {
             <input type="password" name="password" value={user.password} onChange={handleChange}  placeholder="Enter your Password"></input>
             <div className="button" onClick={login}>Login</div>
             <div>or</div>
-            <div className="button" onClick={() => history.push("/signup")}>SignUp</div>
+            <div className="button" onClick={()=> history.push("/signup")}>SignUp</div>
         </div>
     )
 }
 
-export default Login
+export default Login;

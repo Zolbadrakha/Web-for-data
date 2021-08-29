@@ -1,9 +1,8 @@
 import './App.css';
-import Homepage from './Components/HomePage/Homepage';
+import Homepage from './Components/HomePage/Recorder';
 import Login from './Components/Login/Login';
 import Signup from './Components/SignUp/Signup';
-import {
-  BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {useState} from "react"
 
 function App() {
@@ -12,17 +11,18 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            {
-              user && user._id ? <Homepage /> : <Login />
-            }
-          </Route>
-          <Route path="/login"><Login setLoginUser={setLoginUser}/></Route>
-          <Route path="/signup"><Signup /></Route>
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              {
+                user && user._id ? <Homepage setLoginUser={setLoginUser} /> : <Login />
+              }
+            </Route>
+            <Route path="/login"><Login setLoginUser={setLoginUser}/></Route>
+            <Route path="/signup"><Signup /></Route>
+          </Switch>
+        </Router>
+      {/* <Homepage /> */}
     </div>
   );
 }

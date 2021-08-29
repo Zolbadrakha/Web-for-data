@@ -1,26 +1,35 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose')
+import express, { json, urlencoded } from 'express'
+import cors from 'cors'
+import { connect, Schema, model } from 'mongoose'
 
 
 const app = express()
-app.use(express.json())
-app.use(express.urlencoded())
+app.use(json())
+app.use(urlencoded())
 app.use(cors())
 
-mongoose.connect('mongodb://localhost:8000/myLoginAndSignUp',{
+connect('mongodb+srv://rainwons0305:91869740Za@learningmongodb.p0pff.mongodb.net/myLoginAndSignUp?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, ()=> {
     console.log("DB connected")
 })
 
-const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String
+const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 })
-const User = new mongoose.model("User", userSchema)
+const User = new model("User", userSchema)
 
 //Routes
 app.post('/login',(req,res)=>{
@@ -38,7 +47,7 @@ app.post('/login',(req,res)=>{
     })
 }) 
 
-app.post('/register',(req,res)=>{
+app.post('/signup',(req,res)=>{
     const {name, email, password} = req.body
     User.findOne({email: email}, (err, user) => {
         if(user){
@@ -63,3 +72,5 @@ app.post('/register',(req,res)=>{
 app.listen(8000,()=>{
     console.log("8000порт дээр аслаа.")
 })
+
+module.export = model ('myLoginAndSignUp', userSchema)

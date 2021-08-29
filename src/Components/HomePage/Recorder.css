@@ -1,0 +1,51 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 20px;
+  box-shadow: 0 0 15px 5px grey;
+  background: white;
+  position: relative;
+}
+
+.homepage .button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50vh;
+}
+
+.homepage .sentences {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  height: 50vh;
+  margin: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.homepage .audioplay {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50%;
+}
+
+.homepage .status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.homepage .btn2 {
+  margin-left: 30px;
+}
+
+.homepage .btn3 {
+  margin-left: 30px;
+}

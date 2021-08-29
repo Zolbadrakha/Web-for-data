@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Signup.css"
 import axios from "axios"
-import { useHistory } from 'react-router'
+import {useHistory} from 'react-router-dom'
 
 const  Signup = () => {
 
@@ -22,14 +22,17 @@ const  Signup = () => {
         })
     }
 
-    const register = () => {
+    const signup = () => {
         const { name, email, password, reEnterPassword } = user
         if(name && email && password && (password === reEnterPassword)){
-            axios.post("http://localhost:8000/register", user)
-            .then(res => console.log(res))
+            axios.post("http://localhost:8000/signup", user)
+            .then(res => {
+                alert(res.data.message)
+                history.push('/login')
+            })
         }
         else {
-            alert ("invalid input")
+            alert ("Амжилтгүй")
         }
     }
 
@@ -41,7 +44,7 @@ const  Signup = () => {
             <input type="text" name="email" value={user.email} placeholder="Your Email" onChange={handleChange}></input>
             <input type="password" name="password" value={user.password}  placeholder="Your Password" onChange={handleChange}></input>
             <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={handleChange}></input>
-            <div className="button"  onClick={register}>Register</div>
+            <div className="button"  onClick={signup}>Register</div>
             <div>or</div>
             <div className="button" onClick={()=> history.push('/login')}>Login</div>
         </div>
