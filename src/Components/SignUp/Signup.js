@@ -39,14 +39,16 @@ const  Signup = () => {
     return (
         <div className="register">
         {console.log(user)}
-            <h1>Register</h1> 
-            <input type="text" name="name" value={user.name} placeholder="Your Name" onChange={handleChange}></input>   
-            <input type="text" name="email" value={user.email} placeholder="Your Email" onChange={handleChange}></input>
-            <input type="password" name="password" value={user.password}  placeholder="Your Password" onChange={handleChange}></input>
-            <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={handleChange}></input>
-            <div className="button"  onClick={signup}>Register</div>
+            <h1>Бүртгэл</h1> 
+            <input type="text" name="name" value={user.name} placeholder="Таны нэр" onChange={handleChange}></input>   
+            <input type="text" name="email" value={user.email} placeholder="Таны имэйл хаяг" onChange={handleChange}></input>
+            <input type="text" name="number" value={user.age} placeholder="Таны нас" onChange={handleChange}></input>
+            <input type="text" name="string" value={user.niveau} placeholder="Таны франц хэлний түвшин" onChange={handleChange}></input>
+            <input type="password" name="password" value={user.password}  placeholder="Нууц үг" onChange={handleChange}></input>
+            <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Нууц үг дахин оруулна уу!" onChange={handleChange}></input>
+            <div className="button"  onClick={signup}>Бүртгүүлэх</div>
             <div>or</div>
-            <div className="button" onClick={()=> history.push('/login')}>Login</div>
+            <div className="button" onClick={()=> history.push('/login')}>Нэвтрэх</div>
         </div>
     )
 }

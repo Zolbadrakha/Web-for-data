@@ -1,21 +1,21 @@
-import express, { json, urlencoded } from 'express'
-import cors from 'cors'
-import { connect, Schema, model } from 'mongoose'
+const express = require('express');
+const cors = require('cors')
+const mongoose = require('mongoose')
 
 
 const app = express()
-app.use(json())
-app.use(urlencoded())
+app.use(express.json())
+app.use(express.urlencoded())
 app.use(cors())
 
-connect('mongodb+srv://rainwons0305:91869740Za@learningmongodb.p0pff.mongodb.net/myLoginAndSignUp?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://rainwons0305:91869740Za@learningmongodb.p0pff.mongodb.net/myLoginAndSignUp?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, ()=> {
     console.log("DB connected")
 })
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -24,19 +24,27 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    age: {
+        type: Number,
+        required: true
+    },
+    niveau: {
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         required: true
     }
 })
-const User = new model("User", userSchema)
+const User = new mongoose.model("User", userSchema)
 
 //Routes
 app.post('/login',(req,res)=>{
     const { email, password} = req.body
     User.findOne({ email: email}, (err, user) =>{
         if(user){
-            if(password === user.passowrd ){
+            if(password === user.password){
                 res.send({message: "Амжилттай нэвтэрлээ.", user: user})
             } else{
                 res.send({ message: "Нууц үг буруу"})
@@ -48,7 +56,7 @@ app.post('/login',(req,res)=>{
 }) 
 
 app.post('/signup',(req,res)=>{
-    const {name, email, password} = req.body
+    const {name, email, age, niveau, password} = req.body
     User.findOne({email: email}, (err, user) => {
         if(user){
             res.send({message: "Бүртгэгдсэн байна."})
@@ -56,6 +64,8 @@ app.post('/signup',(req,res)=>{
             const user = new User({
                 name,
                 email,
+                age,
+                niveau,
                 password
             })
             user.save(err => {
@@ -73,4 +83,4 @@ app.listen(8000,()=>{
     console.log("8000порт дээр аслаа.")
 })
 
-module.export = model ('myLoginAndSignUp', userSchema)
+module.export = mongoose.model ('myLoginAndSignUp', userSchema)

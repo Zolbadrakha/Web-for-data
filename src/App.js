@@ -22,7 +22,6 @@ function App() {
             <Route path="/signup"><Signup /></Route>
           </Switch>
         </Router>
-      {/* <Homepage /> */}
     </div>
   );
 }
