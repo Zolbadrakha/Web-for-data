@@ -2,16 +2,16 @@ import './App.css';
 import Homepage from './Components/HomePage/Recorder';
 import Login from './Components/Login/Login';
 import Signup from './Components/SignUp/Signup';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import {useState} from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useState } from "react"
 
 function App() {
 
-  const [ user, setLoginUser] = useState({})
+  const [user, setLoginUser] = useState({})
 
   return (
     <div className="App">
-        <Router>
+      <Router>
           <Switch>
             <Route exact path="/">
               {
